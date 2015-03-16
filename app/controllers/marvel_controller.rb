@@ -14,12 +14,12 @@ class MarvelController < ApplicationController
 
 	def show
       @show_id = params['id'].to_i
-      @name = params['name']
-    
-  		response = HTTParty.get("http://gateway.marvel.com/v1/public/characters/#{@show_id}&ts=1&apikey=5e665d8cd10204f361468c880972d41b&hash=74d6bf483eaaa4692876c00eb0fa9e31")
+  		response = HTTParty.get("http://gateway.marvel.com/v1/public/characters/#{@show_id}?ts=1&apikey=5e665d8cd10204f361468c880972d41b&hash=74d6bf483eaaa4692876c00eb0fa9e31")
       result = JSON.parse(response.body)
-      @result = result['results']
-      binding.pry
+      @result = result['data']['results']
+      @name = result['data']['results'][0]['name']
+      @description = result['data']['results'][0]['description']
+      @atthtml = result['attributionHTML']
 	end
 
 end
