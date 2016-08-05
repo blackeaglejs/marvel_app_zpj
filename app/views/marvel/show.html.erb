@@ -2,5 +2,12 @@
 
 <%= @description %><br><br>
 
+Appears In: <br>
+<% @comic_listings.each do |listing| %>
+	<li><%= listing %></li>
+<% end %>
+
+<br>
+
 <a href=\"http://marvel.com\">Data provided by Marvel. © 2015 MARVEL</a><br>
 <%= link_to 'Home', marvel_index_path %>
